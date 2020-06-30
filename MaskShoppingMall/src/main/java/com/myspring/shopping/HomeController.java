@@ -39,18 +39,33 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	
+	@RequestMapping(value="/",method = RequestMethod.GET)
+	public String main(Model model) throws Exception {
+		return "main";
+	}
+	
+	@Inject
+	BoardService boardService;
+
+	@RequestMapping(value="/List",method = RequestMethod.GET)
+	public String List(Model model) throws Exception {
+
+		List<BoardBean> list;		
+		list = boardService.list();	
+		model.addAttribute("list",list);	
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return "/Board/List";
+	}
+	
+	@RequestMapping(value="/login",method = RequestMethod.GET)
+	public String login(Model model) throws Exception {
+		return "/Member/login";
+	}
+	
+	@RequestMapping(value="/Member",method = RequestMethod.GET)
+	public String home(Model model) throws Exception {
+		return "Member/home";
 	}
 	
 	@RequestMapping(value = "/json", method = RequestMethod.GET)
@@ -84,17 +99,18 @@ public class HomeController {
 		
 		return "Test";
 	}
-	
-	@Inject
-	BoardService boardService;
 
-	@RequestMapping(value="/List",method = RequestMethod.GET)
-	public String List(Model model) throws Exception {
-
-		List<BoardBean> list;		
-		list = boardService.list();	
-		model.addAttribute("list",list);	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		return "/Board/List";
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home";
 	}
 }

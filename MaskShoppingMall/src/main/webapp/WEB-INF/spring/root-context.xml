@@ -30,5 +30,10 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
-		
+    
+    <!--  패키지 -->
+    <context:component-scan base-package="com.myspring.shopping"></context:component-scan>
+    <context:component-scan base-package="com.myspring.shopping.DAO"></context:component-scan>
+    <context:component-scan base-package="com.myspring.shopping.service"></context:component-scan>
+    <context:component-scan base-package="com.myspring.shopping.VO"></context:component-scan>
 </beans>
