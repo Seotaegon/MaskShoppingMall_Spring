@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.myspring.shopping.BoardMapper">
+      <select id="List" resultType="Board">
+            <!-- SELECT * FROM board ORDER BY ref DESC, re_step ASC LIMIT #{start-1},#{end} -->
+            SELECT * FROM board
+      </select>
+      <select id="Count" resultType="Board">
+            SELECT COUNT(*) FROM board
+      </select>
+      <select id="Write" resultType="Board">
+            INSERT INTO board VALUES 
+      </select>
+      <select id="Read" resultType="Board">
+            UPDATE board SET readcount=readcount+1 where num = #{num}
+      </select>
+      <select id="Select" resultType="Board">
+            SELECT * FROM board WHERE num = #{num}
+      </select>
+</mapper>
