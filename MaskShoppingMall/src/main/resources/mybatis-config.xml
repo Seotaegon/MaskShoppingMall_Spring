@@ -6,5 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="advc" type="com.myspring.shopping.testdb.TestVO"/>
+		<typeAlias alias="Board" type="com.myspring.shopping.Bean.BoardBean"/>
+		<typeAlias alias="MaskAPI" type="com.myspring.shopping.maskAPI.MaskAPI"/>
 	</typeAliases>
 </configuration>
