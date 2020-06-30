@@ -53,24 +53,29 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/json", method = RequestMethod.GET)
+	@ResponseBody
+	public String json(Locale locale, Model model) {
+		List<MaskAPI> al = sqlSession.selectList(namespace + "Select");
+		return new Gson().toJson(al);
+	}
+	
+	@RequestMapping(value = "/GetJson", method = RequestMethod.GET)
+	public String GetJson(Locale locale, Model model) {
+
+		return "GetJson";
+	}
+	
 	@RequestMapping(value = "/Mask", method = RequestMethod.GET)
 	public String Maks(Locale locale, Model model) {
 	
 		return "Mask";
 	}
-	
-	/*@RequestMapping(value = "/Mask", method = RequestMethod.GET)
-	@ResponseBody
-	public String Mask(Locale locale, Model model) {
-		List<MaskAPI> mask = sqlSession.selectList(namespace + "Select");
-		return new Gson().toJson(mask);
-	}*/
-	
+
 	@Inject
 	TestService service;
 
 	@RequestMapping(value="/Test",method = RequestMethod.GET)
-
 	public String Test(Model model) throws Exception {
 
 		List<TestVO> list;		
